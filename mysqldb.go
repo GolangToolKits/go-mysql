@@ -24,7 +24,6 @@ func (m *MyDB) Connect() bool {
 	var conStr = m.User + ":" + m.Password + "@tcp(" + m.Host + ")/" + m.Database
 	m.db, m.err = sql.Open("mysql", conStr)
 	if m.err == nil {
-		// log.Println("Open Error:", m.err.Error())
 		m.err = m.db.Ping()
 		if m.err != nil {
 			log.Println("Database Connect Error:", m.err.Error())
@@ -35,11 +34,9 @@ func (m *MyDB) Connect() bool {
 	return rtn
 }
 
-// GetNewDatabase GetNewDatabase
-func (m *MyDB) GetNewDatabase() Database {
-	var db Database
-	db = m
-	return db
+// New NewDatabase
+func (m *MyDB) New() Database {
+	return m
 }
 
 // BeginTransaction BeginTransaction
@@ -49,11 +46,7 @@ func (m *MyDB) BeginTransaction() Transaction {
 	tx, err := m.db.Begin()
 	if err == nil && tx != nil {
 		myTrans.Tx = tx
-		// log.Println("Transaction Error:", err.Error())
 	}
-	// else {
-	// 	myTrans.Tx = tx
-	// }
 	trans = &myTrans
 	return trans
 }
@@ -80,11 +73,7 @@ func (m *MyDB) Insert(query string, args ...interface{}) (bool, int64) {
 			id, err = res.LastInsertId()
 			if err == nil && id > 0 {
 				success = true
-				//log.Println("Error:", err.Error())
 			}
-			// else {
-			// 	success = true
-			// }
 		}
 	}
 	return success, id
@@ -103,10 +92,9 @@ func (m *MyDB) Update(query string, args ...interface{}) bool {
 		if err != nil {
 			log.Println("Update Exec err:", err.Error())
 		} else {
-			log.Println("Update Exec success:")
-			affectedRows, err := res.RowsAffected()
-			if err != nil && affectedRows == 0 {
-				log.Println("Error:", err.Error())
+			affectedRows, _ := res.RowsAffected()
+			if affectedRows == 0 {
+				log.Println("Error: No records updated")
 			} else {
 				success = true
 			}
@@ -124,14 +112,12 @@ func (m *MyDB) Get(query string, args ...interface{}) *DbRow {
 	} else {
 		defer stmtGet.Close()
 		rows, err := stmtGet.Query(args...)
-		defer rows.Close()
 		if err != nil {
 			log.Println("Get err: ", err)
 		} else {
+			defer rows.Close()
 			columns, err := rows.Columns()
-			if err != nil {
-				log.Println("Error:", err.Error())
-			} else {
+			if err == nil {
 				rtn.Columns = columns
 				rowValues := make([]sql.RawBytes, len(columns))
 				scanArgs := make([]interface{}, len(rowValues))
@@ -139,10 +125,12 @@ func (m *MyDB) Get(query string, args ...interface{}) *DbRow {
 					scanArgs[i] = &rowValues[i]
 				}
 				for rows.Next() {
-					err = rows.Scan(scanArgs...)
-					if err != nil {
-						log.Println("Error:", err.Error())
-					}
+					// err = rows.Scan(scanArgs...)
+					// if err != nil {
+					// 	log.Println("Error:", err.Error())
+					// }
+					rows.Scan(scanArgs...)
+
 					for _, col := range rowValues {
 						var value string
 						if col == nil {
@@ -153,9 +141,9 @@ func (m *MyDB) Get(query string, args ...interface{}) *DbRow {
 						rtn.Row = append(rtn.Row, value)
 					}
 				}
-				if err = rows.Err(); err != nil {
-					log.Println("Error:", err.Error())
-				}
+				// if err = rows.Err(); err != nil {
+				// 	log.Println("Error:", err.Error())
+				// }
 			}
 		}
 	}
@@ -171,39 +159,41 @@ func (m *MyDB) GetList(query string, args ...interface{}) *DbRows {
 	} else {
 		defer stmtGet.Close()
 		rows, err := stmtGet.Query(args...)
-		defer rows.Close()
+		// defer rows.Close()
 		if err != nil {
 			log.Println("GetList err: ", err)
 		} else {
+			defer rows.Close()
 			columns, err := rows.Columns()
-			if err != nil {
-				log.Println("Error:", err.Error())
-			}
-			rtn.Columns = columns
-			rowValues := make([]sql.RawBytes, len(columns))
-			scanArgs := make([]interface{}, len(rowValues))
-			for i := range rowValues {
-				scanArgs[i] = &rowValues[i]
-			}
-			for rows.Next() {
-				var rowValuesStr []string
-				err = rows.Scan(scanArgs...)
-				if err != nil {
-					log.Println("Error:", err.Error())
+			if err == nil {
+				rtn.Columns = columns
+				rowValues := make([]sql.RawBytes, len(columns))
+				scanArgs := make([]interface{}, len(rowValues))
+				for i := range rowValues {
+					scanArgs[i] = &rowValues[i]
 				}
-				for _, col := range rowValues {
-					var value string
-					if col == nil {
-						value = "NULL"
-					} else {
-						value = string(col)
+				for rows.Next() {
+					var rowValuesStr []string
+					// err = rows.Scan(scanArgs...)
+					// if err != nil {
+					// 	log.Println("Error:", err.Error())
+					// }
+					rows.Scan(scanArgs...)
+
+					for _, col := range rowValues {
+						var value string
+						if col == nil {
+							value = "NULL"
+						} else {
+							value = string(col)
+						}
+						rowValuesStr = append(rowValuesStr, value)
 					}
-					rowValuesStr = append(rowValuesStr, value)
+					rtn.Rows = append(rtn.Rows, rowValuesStr)
 				}
-				rtn.Rows = append(rtn.Rows, rowValuesStr)
-			}
-			if err = rows.Err(); err != nil {
-				log.Println("Error:", err.Error())
+				// if err = rows.Err(); err != nil {
+				// 	log.Println("Error:", err.Error())
+				// }
 			}
 		}
 	}
@@ -223,14 +213,11 @@ func (m *MyDB) Delete(query string, args ...interface{}) bool {
 		if err != nil {
 			log.Println("Delete Exec err:", err.Error())
 		} else {
-			affectedRows, err := res.RowsAffected()
-			if err != nil {
-				log.Println("Error:", err.Error())
+			affectedRows, _ := res.RowsAffected()
+			if affectedRows == 0 {
+				log.Println("Error: No records deleted")
 			} else {
-				//fmt.Println("Delete Exec success:")
-				if affectedRows > 0 {
-					success = true
-				}
+				success = true
 			}
 		}
 	}
@@ -241,9 +228,7 @@ func (m *MyDB) Delete(query string, args ...interface{}) bool {
 func (m *MyDB) Close() bool {
 	var rtn = false
 	err := m.db.Close()
-	if err != nil {
-		log.Println("database close error: ", err)
-	} else {
+	if err == nil {
 		rtn = true
 	}
 	return rtn
