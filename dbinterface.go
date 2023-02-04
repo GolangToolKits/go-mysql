@@ -34,4 +34,4 @@ type Transaction interface {
 	Rollback() bool
 }
 
-// go mod init github.com/GolangToolKits/simple_mysql
+// go mod init github.com/GolangToolKits/go_mysql
