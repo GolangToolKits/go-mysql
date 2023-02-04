@@ -1,5 +1,5 @@
 # go_mysql
-An easy to use db interface for mysql
+An easy to use Mockable db interface for mysql
 
 ```go
 
