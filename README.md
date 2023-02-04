@@ -1,2 +1,2 @@
-# simple_mysql
-A simple mysql db interface
+# go_mysql
+An easy to use db interface for mysql
