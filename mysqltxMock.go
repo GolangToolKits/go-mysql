@@ -9,7 +9,7 @@ type MyDbTxMock struct {
 }
 
 // Insert Insert
-func (t *MyDbTxMock) Insert(query string, args ...interface{}) (bool, int64) {
+func (t *MyDbTxMock) Insert(query string, args ...any) (bool, int64) {
 	var rtn = false
 	var id int64
 	if !t.MyDBMock.mockInsertSuccess1Used {
@@ -49,7 +49,7 @@ func (t *MyDbTxMock) Insert(query string, args ...interface{}) (bool, int64) {
 }
 
 // Update Update
-func (t *MyDbTxMock) Update(query string, args ...interface{}) bool {
+func (t *MyDbTxMock) Update(query string, args ...any) bool {
 	var rtn = false
 	if !t.MyDBMock.mockUpdateSuccess1Used {
 		t.MyDBMock.mockUpdateSuccess1Used = true
@@ -68,7 +68,7 @@ func (t *MyDbTxMock) Update(query string, args ...interface{}) bool {
 }
 
 // Delete Delete
-func (t *MyDbTxMock) Delete(query string, args ...interface{}) bool {
+func (t *MyDbTxMock) Delete(query string, args ...any) bool {
 	var rtn = false
 	if !t.MyDBMock.mockDeleteSuccess1Used {
 		t.MyDBMock.mockDeleteSuccess1Used = true

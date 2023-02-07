@@ -126,12 +126,12 @@ func (m *MyDBMock) BeginTransaction() Transaction {
 }
 
 // Test Test
-func (m *MyDBMock) Test(query string, args ...interface{}) *DbRow {
+func (m *MyDBMock) Test(query string, args ...any) *DbRow {
 	return m.MockTestRow
 }
 
 // Insert Insert
-func (m *MyDBMock) Insert(query string, args ...interface{}) (bool, int64) {
+func (m *MyDBMock) Insert(query string, args ...any) (bool, int64) {
 	var rtn = false
 	var id int64
 	if !m.mockInsertSuccess1Used {
@@ -155,7 +155,7 @@ func (m *MyDBMock) Insert(query string, args ...interface{}) (bool, int64) {
 }
 
 // Update Update
-func (m *MyDBMock) Update(query string, args ...interface{}) bool {
+func (m *MyDBMock) Update(query string, args ...any) bool {
 	var rtn = false
 	if !m.mockUpdateSuccess1Used {
 		m.mockUpdateSuccess1Used = true
@@ -174,7 +174,7 @@ func (m *MyDBMock) Update(query string, args ...interface{}) bool {
 }
 
 // Get Get
-func (m *MyDBMock) Get(query string, args ...interface{}) *DbRow {
+func (m *MyDBMock) Get(query string, args ...any) *DbRow {
 	//return m.MockRow
 	var rtn *DbRow
 	if !m.mockRow1Used {
@@ -206,7 +206,7 @@ func (m *MyDBMock) Get(query string, args ...interface{}) *DbRow {
 }
 
 // GetList GetList
-func (m *MyDBMock) GetList(query string, args ...interface{}) *DbRows {
+func (m *MyDBMock) GetList(query string, args ...any) *DbRows {
 	var rtn *DbRows
 	if !m.mockRows1Used {
 		m.mockRows1Used = true
@@ -237,7 +237,7 @@ func (m *MyDBMock) GetList(query string, args ...interface{}) *DbRows {
 }
 
 // Delete Delete
-func (m *MyDBMock) Delete(query string, args ...interface{}) bool {
+func (m *MyDBMock) Delete(query string, args ...any) bool {
 	var rtn = false
 	if !m.mockDeleteSuccess1Used {
 		m.mockDeleteSuccess1Used = true

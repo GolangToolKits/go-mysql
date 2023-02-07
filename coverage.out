@@ -8,15 +8,15 @@ github.com/GolangToolKits/go_mysql/mysqldb.go:38.31,40.2 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:43.47,47.29 4 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:50.2,51.14 2 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:47.29,49.3 1 1
-github.com/GolangToolKits/go_mysql/mysqldb.go:55.63,57.2 1 1
-github.com/GolangToolKits/go_mysql/mysqldb.go:60.72,65.18 5 1
+github.com/GolangToolKits/go_mysql/mysqldb.go:55.55,57.2 1 1
+github.com/GolangToolKits/go_mysql/mysqldb.go:60.64,65.18 5 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:79.2,79.20 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:65.18,67.3 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:67.8,70.17 3 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:70.17,72.4 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:72.9,74.28 2 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:74.28,76.5 1 1
-github.com/GolangToolKits/go_mysql/mysqldb.go:83.63,87.18 4 1
+github.com/GolangToolKits/go_mysql/mysqldb.go:83.55,87.18 4 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:103.2,103.16 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:87.18,89.3 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:89.8,92.17 3 1
@@ -24,7 +24,7 @@ github.com/GolangToolKits/go_mysql/mysqldb.go:92.17,94.4 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:94.9,96.25 2 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:96.25,98.5 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:98.10,100.5 1 1
-github.com/GolangToolKits/go_mysql/mysqldb.go:107.62,110.16 3 1
+github.com/GolangToolKits/go_mysql/mysqldb.go:107.54,110.16 3 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:150.2,150.13 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:110.16,112.3 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:112.8,115.17 3 1
@@ -38,7 +38,7 @@ github.com/GolangToolKits/go_mysql/mysqldb.go:134.36,136.21 2 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:141.7,141.39 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:136.21,138.8 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:138.13,140.8 1 1
-github.com/GolangToolKits/go_mysql/mysqldb.go:154.67,157.16 3 1
+github.com/GolangToolKits/go_mysql/mysqldb.go:154.59,157.16 3 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:200.2,200.13 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:157.16,159.3 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:159.8,163.17 3 1
@@ -53,7 +53,7 @@ github.com/GolangToolKits/go_mysql/mysqldb.go:183.36,185.21 2 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:190.7,190.49 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:185.21,187.8 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:187.13,189.8 1 1
-github.com/GolangToolKits/go_mysql/mysqldb.go:204.63,208.18 4 1
+github.com/GolangToolKits/go_mysql/mysqldb.go:204.55,208.18 4 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:224.2,224.16 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:208.18,210.3 1 1
 github.com/GolangToolKits/go_mysql/mysqldb.go:210.8,213.17 3 1

@@ -147,7 +147,7 @@ func TestMyDB_BeginTransaction(t *testing.T) {
 }
 
 func Test(t *testing.T) {
-	var a []interface{}
+	var a []any
 	type fields struct {
 		Host     string
 		User     string
@@ -158,7 +158,7 @@ func Test(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -196,10 +196,10 @@ func Test(t *testing.T) {
 }
 
 func TestMyDB_Insert(t *testing.T) {
-	var a []interface{}
+	var a []any
 	a = append(a, "test insert 1", "123 main st")
 
-	var a2 []interface{}
+	var a2 []any
 	type fields struct {
 		Host     string
 		User     string
@@ -210,7 +210,7 @@ func TestMyDB_Insert(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -271,13 +271,13 @@ func TestMyDB_Insert(t *testing.T) {
 
 func TestMyDB_Update(t *testing.T) {
 	var id = 112
-	var a []interface{}
+	var a []any
 	var tstr = time.Now().UnixNano()
 	a = append(a, tstr, "11111 main st", id)
 
-	var a2 []interface{}
+	var a2 []any
 
-	var a3 []interface{}
+	var a3 []any
 	a3 = append(a3, "test insert 2", "123456 main st", 0)
 
 	type fields struct {
@@ -290,7 +290,7 @@ func TestMyDB_Update(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -353,13 +353,13 @@ func TestMyDB_Update(t *testing.T) {
 
 func TestMyDB_Get(t *testing.T) {
 	var id = 112
-	var a []interface{}
+	var a []any
 	a = append(a, id)
 
-	var a2 []interface{}
+	var a2 []any
 
 	var id3 = 172
-	var a3 []interface{}
+	var a3 []any
 	a3 = append(a3, id3)
 
 	type fields struct {
@@ -372,7 +372,7 @@ func TestMyDB_Get(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -445,7 +445,7 @@ func TestMyDB_Get(t *testing.T) {
 }
 
 func TestMyDB_GetList(t *testing.T) {
-	var a []interface{}
+	var a []any
 	type fields struct {
 		Host     string
 		User     string
@@ -456,7 +456,7 @@ func TestMyDB_GetList(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -523,10 +523,10 @@ func TestMyDB_GetList(t *testing.T) {
 
 func TestMyDB_Delete(t *testing.T) {
 	var id = 139
-	var a []interface{}
+	var a []any
 	a = append(a, id)
 
-	var a2 []interface{}
+	var a2 []any
 
 	type fields struct {
 		Host     string
@@ -538,7 +538,7 @@ func TestMyDB_Delete(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string

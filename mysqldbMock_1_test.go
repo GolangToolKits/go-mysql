@@ -737,7 +737,7 @@ func TestTest(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -952,7 +952,7 @@ func TestMyDBMock_Insert(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -1207,7 +1207,7 @@ func TestMyDBMock_Update(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string

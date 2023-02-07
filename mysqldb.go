@@ -52,12 +52,12 @@ func (m *MyDB) BeginTransaction() Transaction {
 }
 
 // Test Test
-func (m *MyDB) Test(query string, args ...interface{}) *DbRow {
+func (m *MyDB) Test(query string, args ...any) *DbRow {
 	return m.Get(query, args...)
 }
 
 // Insert Insert
-func (m *MyDB) Insert(query string, args ...interface{}) (bool, int64) {
+func (m *MyDB) Insert(query string, args ...any) (bool, int64) {
 	var success = false
 	var id int64 = -1
 	var stmtIns *sql.Stmt
@@ -80,7 +80,7 @@ func (m *MyDB) Insert(query string, args ...interface{}) (bool, int64) {
 }
 
 // Update Update
-func (m *MyDB) Update(query string, args ...interface{}) bool {
+func (m *MyDB) Update(query string, args ...any) bool {
 	var success = false
 	var stmtUp *sql.Stmt
 	stmtUp, m.err = m.db.Prepare(query)
@@ -104,7 +104,7 @@ func (m *MyDB) Update(query string, args ...interface{}) bool {
 }
 
 // Get Get
-func (m *MyDB) Get(query string, args ...interface{}) *DbRow {
+func (m *MyDB) Get(query string, args ...any) *DbRow {
 	var rtn DbRow
 	stmtGet, err := m.db.Prepare(query)
 	if err != nil {
@@ -120,7 +120,7 @@ func (m *MyDB) Get(query string, args ...interface{}) *DbRow {
 			if err == nil {
 				rtn.Columns = columns
 				rowValues := make([]sql.RawBytes, len(columns))
-				scanArgs := make([]interface{}, len(rowValues))
+				scanArgs := make([]any, len(rowValues))
 				for i := range rowValues {
 					scanArgs[i] = &rowValues[i]
 				}
@@ -151,7 +151,7 @@ func (m *MyDB) Get(query string, args ...interface{}) *DbRow {
 }
 
 // GetList GetList
-func (m *MyDB) GetList(query string, args ...interface{}) *DbRows {
+func (m *MyDB) GetList(query string, args ...any) *DbRows {
 	var rtn DbRows
 	stmtGet, err := m.db.Prepare(query)
 	if err != nil {
@@ -168,7 +168,7 @@ func (m *MyDB) GetList(query string, args ...interface{}) *DbRows {
 			if err == nil {
 				rtn.Columns = columns
 				rowValues := make([]sql.RawBytes, len(columns))
-				scanArgs := make([]interface{}, len(rowValues))
+				scanArgs := make([]any, len(rowValues))
 				for i := range rowValues {
 					scanArgs[i] = &rowValues[i]
 				}
@@ -201,7 +201,7 @@ func (m *MyDB) GetList(query string, args ...interface{}) *DbRows {
 }
 
 // Delete Delete
-func (m *MyDB) Delete(query string, args ...interface{}) bool {
+func (m *MyDB) Delete(query string, args ...any) bool {
 	var success = false
 	var stmt *sql.Stmt
 	stmt, m.err = m.db.Prepare(query)

@@ -103,7 +103,7 @@ func TestMyDBMock_Get(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -396,7 +396,7 @@ func TestMyDBMock_GetList(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -688,7 +688,7 @@ func TestMyDBMock_Delete(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string

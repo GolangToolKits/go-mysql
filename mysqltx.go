@@ -11,7 +11,7 @@ type MyDbTx struct {
 }
 
 // Insert Insert
-func (t *MyDbTx) Insert(query string, args ...interface{}) (bool, int64) {
+func (t *MyDbTx) Insert(query string, args ...any) (bool, int64) {
 	var success = false
 	var id int64 = -1
 	//var stmtIns *sql.Stmt
@@ -32,7 +32,7 @@ func (t *MyDbTx) Insert(query string, args ...interface{}) (bool, int64) {
 }
 
 // Update Update
-func (t *MyDbTx) Update(query string, args ...interface{}) bool {
+func (t *MyDbTx) Update(query string, args ...any) bool {
 	var success = false
 	stmtIns, err := t.Tx.Prepare(query)
 	if err != nil {
@@ -50,7 +50,7 @@ func (t *MyDbTx) Update(query string, args ...interface{}) bool {
 }
 
 // Delete Delete
-func (t *MyDbTx) Delete(query string, args ...interface{}) bool {
+func (t *MyDbTx) Delete(query string, args ...any) bool {
 	var success = false
 	stmtIns, err := t.Tx.Prepare(query)
 	if err != nil {

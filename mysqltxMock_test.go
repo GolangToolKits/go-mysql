@@ -12,7 +12,7 @@ func TestMyDbTxMock_Insert(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -163,7 +163,7 @@ func TestMyDbTxMock_Update(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -235,7 +235,7 @@ func TestMyDbTxMock_Delete(t *testing.T) {
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string

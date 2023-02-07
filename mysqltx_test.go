@@ -7,17 +7,17 @@ import (
 )
 
 func TestMyDbTx_Insert(t *testing.T) {
-	var a []interface{}
+	var a []any
 	a = append(a, "test insert 22", "123 main st")
 
-	var a2 []interface{}
+	var a2 []any
 
 	type fields struct {
 		Tx *sql.Tx
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -85,18 +85,18 @@ func TestMyDbTx_Insert(t *testing.T) {
 
 func TestMyDbTx_Update(t *testing.T) {
 	var id = 112
-	var a []interface{}
+	var a []any
 	var tstr = time.Now().UnixNano()
 	a = append(a, tstr, "22222 main st", id)
 
-	var a2 []interface{}
+	var a2 []any
 
 	type fields struct {
 		Tx *sql.Tx
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -157,17 +157,17 @@ func TestMyDbTx_Update(t *testing.T) {
 func TestMyDbTx_Delete(t *testing.T) {
 
 	var id = 140
-	var a []interface{}
+	var a []any
 	a = append(a, id)
 
-	var a2 []interface{}
+	var a2 []any
 
 	type fields struct {
 		Tx *sql.Tx
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
@@ -267,17 +267,17 @@ func TestMyDbTx_Commit(t *testing.T) {
 func TestMyDbTx_Delete_Rollback(t *testing.T) {
 
 	var id = 141
-	var a []interface{}
+	var a []any
 	a = append(a, id)
 
-	//var a2 []interface{}
+	//var a2 []any
 
 	type fields struct {
 		Tx *sql.Tx
 	}
 	type args struct {
 		query string
-		args  []interface{}
+		args  []any
 	}
 	tests := []struct {
 		name   string
