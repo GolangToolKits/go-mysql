@@ -1,6 +1,8 @@
 # go_mysql
 An easy to use Mockable db interface for mysql
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/GolangToolKits/go-mysql)](https://goreportcard.com/report/github.com/GolangToolKits/go-mysql)
+
 ```go
 
     mm := &MyDB{
