@@ -1,4 +1,4 @@
-module github.com/GolangToolKits/go_mysql
+module github.com/GolangToolKits/go-mysql
 
 go 1.19
 
