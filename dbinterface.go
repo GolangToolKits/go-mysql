@@ -1,4 +1,4 @@
-package simplemysql
+package gomysql
 
 // DbRow database row
 type DbRow struct {

@@ -1,4 +1,4 @@
-package simplemysql
+package gomysql
 
 import "database/sql"
 
