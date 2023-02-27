@@ -109,6 +109,11 @@ func (m *MyDBMock) Connect() bool {
 	return m.MockConnectSuccess
 }
 
+// New New
+func (m *MyDBMock) New() Database {
+	return m
+}
+
 // GetNewDatabase GetNewDatabase
 func (m *MyDBMock) GetNewDatabase() Database {
 	var db Database

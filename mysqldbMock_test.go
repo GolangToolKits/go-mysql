@@ -199,7 +199,7 @@ func TestMyDBMock_Get(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			m := &MyDBMock{
+			mm := &MyDBMock{
 				Host:                   tt.fields.Host,
 				User:                   tt.fields.User,
 				Password:               tt.fields.Password,
@@ -292,6 +292,7 @@ func TestMyDBMock_Get(t *testing.T) {
 				MockRows7:              tt.fields.MockRows7,
 				MockRows8:              tt.fields.MockRows8,
 			}
+			m := mm.New()
 			if got := m.Get(tt.args.query, tt.args.args...); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("MyDBMock.Get() = %v, want %v", got, tt.want)
 			}
