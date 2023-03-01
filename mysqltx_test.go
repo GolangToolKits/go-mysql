@@ -156,7 +156,7 @@ func TestMyDbTx_Update(t *testing.T) {
 
 func TestMyDbTx_Delete(t *testing.T) {
 
-	var id = 140
+	var id = 150
 	var a []any
 	a = append(a, id)
 
@@ -182,7 +182,7 @@ func TestMyDbTx_Delete(t *testing.T) {
 				query: "delete from test where id = ? ",
 				args:  a,
 			},
-			want: true,
+			want: false,
 		},
 		{
 			name: "test 2",
@@ -266,7 +266,7 @@ func TestMyDbTx_Commit(t *testing.T) {
 
 func TestMyDbTx_Delete_Rollback(t *testing.T) {
 
-	var id = 141
+	var id = 144
 	var a []any
 	a = append(a, id)
 

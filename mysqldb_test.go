@@ -522,7 +522,7 @@ func TestMyDB_GetList(t *testing.T) {
 }
 
 func TestMyDB_Delete(t *testing.T) {
-	var id = 139
+	var id = 130
 	var a []any
 	a = append(a, id)
 
@@ -634,7 +634,7 @@ func TestMyDB_Close(t *testing.T) {
 				db:       tt.fields.db,
 				err:      tt.fields.err,
 			}
-			m:= mm.New()
+			m := mm.New()
 			m.Connect()
 			if got := m.Close(); got != tt.want {
 				t.Errorf("MyDB.Close() = %v, want %v", got, tt.want)

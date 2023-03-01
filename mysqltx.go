@@ -24,8 +24,11 @@ func (t *MyDbTx) Insert(query string, args ...any) (bool, int64) {
 		if err != nil {
 			log.Println("Insert transaction Exec err:", err.Error())
 		} else {
-			id, _ = res.LastInsertId()
-			success = true
+			id, err = res.LastInsertId()
+			affectedRows, _ := res.RowsAffected()
+			if err == nil && affectedRows > 0 {
+				success = true
+			}
 		}
 	}
 	return success, id
@@ -39,11 +42,16 @@ func (t *MyDbTx) Update(query string, args ...any) bool {
 		log.Println("Update transaction prepare err:", err.Error())
 	} else {
 		defer stmtIns.Close()
-		_, err := stmtIns.Exec(args...)
+		res, err := stmtIns.Exec(args...)
 		if err != nil {
 			log.Println("Update transaction Exec err:", err.Error())
 		} else {
-			success = true
+			affectedRows, _ := res.RowsAffected()
+			if affectedRows == 0 {
+				log.Println("Error: No records updated")
+			} else {
+				success = true
+			}
 		}
 	}
 	return success
@@ -57,12 +65,17 @@ func (t *MyDbTx) Delete(query string, args ...any) bool {
 		log.Println("Delete transaction prepare err:", err.Error())
 	} else {
 		defer stmtIns.Close()
-		_, err := stmtIns.Exec(args...)
+		res, err := stmtIns.Exec(args...)
 		if err != nil {
 			log.Println("Delete transaction Exec err:", err.Error())
 			//t.Tx.Rollback()
 		} else {
-			success = true
+			affectedRows, _ := res.RowsAffected()
+			if affectedRows == 0 {
+				log.Println("Error: No records deleted")
+			} else {
+				success = true
+			}
 			//t.Tx.Commit()
 		}
 	}

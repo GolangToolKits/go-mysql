@@ -71,7 +71,8 @@ func (m *MyDB) Insert(query string, args ...any) (bool, int64) {
 			log.Println("Insert Exec err:", err.Error())
 		} else {
 			id, err = res.LastInsertId()
-			if err == nil && id > 0 {
+			affectedRows, _ := res.RowsAffected()
+			if err == nil && affectedRows > 0 {
 				success = true
 			}
 		}
